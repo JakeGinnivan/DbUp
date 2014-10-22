@@ -36,7 +36,7 @@ namespace DbUp.Support.Postgresql
                 ? QuoteIdentifier(table)
                 : QuoteIdentifier(schema) + "." + QuoteIdentifier(table);
             this.connectionManager = connectionManager;
-            log = logger;        
+            log = logger;
         }
 
         private static string CreateTableSql(string tableName)
@@ -152,6 +152,11 @@ namespace DbUp.Support.Postgresql
                     return false;
                 }
             });
+        }
+
+        public bool ValidateExecutedScript(SqlScript script)
+        {
+            return true;
         }
     }
 }

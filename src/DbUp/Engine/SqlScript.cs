@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.IO;
 using System.Text;
 
@@ -46,8 +45,8 @@ namespace DbUp.Engine
         /// <summary>
         /// Create a SqlScript from a file using Default encoding
         /// </summary>
-        /// <param name="path"></param>
-        /// <returns></returns>
+        /// <param name="path">Full path location of file.</param>
+        /// <returns>New SqlScript instance from file.</returns>
         public static SqlScript FromFile(string path)
         {
             return FromFile(path, Encoding.Default);
@@ -71,9 +70,9 @@ namespace DbUp.Engine
         /// <summary>
         /// Create a SqlScript from a stream using Default encoding
         /// </summary>
-        /// <param name="scriptName"></param>
-        /// <param name="stream"></param>
-        /// <returns></returns>
+        /// <param name="scriptName">Name of script to get from stream</param>
+        /// <param name="stream">SqlScript stream</param>
+        /// <returns>New SqlScript instance from stream.</returns>
         public static SqlScript FromStream(string scriptName, Stream stream)
         {
             return FromStream(scriptName, stream, Encoding.Default);

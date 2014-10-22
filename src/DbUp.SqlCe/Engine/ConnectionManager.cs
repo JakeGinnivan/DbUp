@@ -9,13 +9,13 @@ namespace DbUp.SqlCe
     /// <summary>
     /// Manages SqlCe Database Connections
     /// </summary>
-    public class SqlCeConnectionManager : DatabaseConnectionManager
+    public class ConnectionManager : DatabaseConnectionManager
     {
         /// <summary>
         /// Manages SqlCe Database Connections
         /// </summary>
         /// <param name="connectionString"></param>
-        public SqlCeConnectionManager(string connectionString) : base(l => new SqlCeConnection(connectionString))
+        public ConnectionManager(string connectionString) : base(l => new SqlCeConnection(connectionString))
         {
         }
 

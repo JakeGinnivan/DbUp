@@ -36,7 +36,7 @@ namespace DbUp.Support.MySql
                 ? QuoteIdentifier(table)
                 : QuoteIdentifier(schema) + "." + QuoteIdentifier(table);
             this.connectionManager = connectionManager;
-            log = logger;        
+            log = logger;
         }
 
         private static string CreateTableSql(string tableName)
@@ -77,6 +77,11 @@ namespace DbUp.Support.MySql
             });
 
             return scripts.ToArray();
+        }
+
+        public bool ValidateExecutedScript(SqlScript script)
+        {
+            return true;
         }
 
         /// <summary>

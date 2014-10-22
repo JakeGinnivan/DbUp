@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Data;
-using System.Data.SQLite;
 using DbUp.Engine;
 using DbUp.Engine.Output;
 using DbUp.Engine.Transactions;
-using DbUp.Support.SQLite;
+using DbUp.SQLite.Engine;
+using DbUp.Support.SqlServer;
 using DbUp.Tests.TestInfrastructure;
 using Mono.Data.Sqlite;
 using NSubstitute;
@@ -25,7 +25,7 @@ namespace DbUp.Tests.Support.SQLiteMono
             var connectionManager = Substitute.For<IConnectionManager>();
             command.ExecuteScalar().Returns(x => { throw new SqliteException("table not found"); });
             var consoleUpgradeLog = new ConsoleUpgradeLog();
-            var journal = new SQLiteTableJournal(() => connectionManager, () => consoleUpgradeLog, "SchemaVersions");
+            var journal = new TableJournal(() => connectionManager, () => consoleUpgradeLog, () => new QueryProvider("SchemaVersions"));
 
             // When
             var scripts = journal.GetExecutedScripts();
@@ -48,7 +48,7 @@ namespace DbUp.Tests.Support.SQLiteMono
             command.CreateParameter().Returns(param1, param2);
             command.ExecuteScalar().Returns(x => { throw new SqliteException("table not found"); });
             var consoleUpgradeLog = new ConsoleUpgradeLog();
-            var journal = new SQLiteTableJournal(() => connectionManager, () => consoleUpgradeLog, "SchemaVersions");
+            var journal = new TableJournal(() => connectionManager, () => consoleUpgradeLog, () => new QueryProvider("SchemaVersions"));
 
             // When
             journal.StoreExecutedScript(new SqlScript("test", "select 1"));

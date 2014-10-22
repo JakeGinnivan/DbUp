@@ -88,6 +88,11 @@ namespace DbUp.Support.Firebird
             return scripts.ToArray();
         }
 
+        public bool ValidateExecutedScript(SqlScript script)
+        {
+            return true;
+        }
+
         private void ExecuteCommand(Func<IDbCommand> dbCommandFactory, string sql)
         {
             using (var command = dbCommandFactory())

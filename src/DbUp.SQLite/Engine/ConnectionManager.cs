@@ -6,24 +6,24 @@ using System.Text.RegularExpressions;
 using DbUp.Engine.Transactions;
 using DbUp.SQLite.Helpers;
 
-namespace DbUp.SQLite
+namespace DbUp.SQLite.Engine
 {
     /// <summary>
-    /// Connection manager for Sql Lite
+    /// SQLite Connection Manager.
     /// </summary>
-    public class SQLiteConnectionManager : DatabaseConnectionManager
+    public class ConnectionManager : DatabaseConnectionManager
     {
         /// <summary>
         /// Creates new SQLite Connection Manager
         /// </summary>
-        public SQLiteConnectionManager(string connectionString) : base(l => new SQLiteConnection(connectionString))
+        public ConnectionManager(string connectionString) : base(l => new SQLiteConnection(connectionString))
         {
         }
 
         /// <summary>
         /// Creates new SQLite Connection Manager
         /// </summary>
-        public SQLiteConnectionManager(SharedConnection sharedConnection) : base(l => sharedConnection)
+        public ConnectionManager(SharedConnection sharedConnection) : base(l => sharedConnection)
         {
         }
 

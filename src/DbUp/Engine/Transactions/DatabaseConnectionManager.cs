@@ -18,6 +18,15 @@ namespace DbUp.Engine.Transactions
         private IConnectionFactory connectionFactoryOverride;
 
         /// <summary>
+        /// Connection string
+        /// </summary>
+        public string ConnectionString
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Manages Database Connections
         /// </summary>
         protected DatabaseConnectionManager(Func<IUpgradeLog, IDbConnection> connectionFactory) : this(new DelegateConnectionFactory(connectionFactory))

@@ -52,10 +52,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SqlCeConnectionManager.cs" />
+    <Compile Include="Engine\QueryProvider.cs" />
+    <Compile Include="Engine\ConnectionManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlCeExtensions.cs" />
-    <Compile Include="SqlCePreprocessor.cs" />
+    <Compile Include="Engine\Preprocessor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbup.snk" />
