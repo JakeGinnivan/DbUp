@@ -88,7 +88,7 @@ namespace DbUp.Support.Firebird
             return scripts.ToArray();
         }
 
-        public bool ValidateExecutedScript(SqlScript script)
+        public bool ValidateScript(SqlScript script)
         {
             return true;
         }

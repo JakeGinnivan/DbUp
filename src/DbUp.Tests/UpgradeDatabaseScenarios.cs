@@ -11,6 +11,7 @@ using DbUp.Support.SqlServer;
 using NSubstitute;
 using NUnit.Framework;
 using TestStack.BDDfy;
+using DbUp.SQLite;
 
 namespace DbUp.Tests
 {
@@ -190,9 +191,9 @@ namespace DbUp.Tests
 
         private TableJournal GetJournal()
         {
-            var sqLiteConnectionManager = new ConnectionManager(database.SharedConnection);
+            var sqLiteConnectionManager = new SQLiteConnectionManager(database.SharedConnection);
             sqLiteConnectionManager.OperationStarting(log, new List<SqlScript>());
-            var journal = new TableJournal(() => sqLiteConnectionManager, () => log, () => new QueryProvider("SchemaVersions"));
+            var journal = new TableJournal(() => sqLiteConnectionManager, () => log, () => new SQLiteStatements("SchemaVersions"));
             return journal;
         }
 
