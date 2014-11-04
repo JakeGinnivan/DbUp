@@ -19,7 +19,7 @@ namespace DbUp.Tests.Support.SqlServer
         [Test]
         public void verify_schema_should_not_check_when_schema_is_null()
         {
-            var executor = new SqlScriptExecutor(() => Substitute.For<IConnectionManager>(), () => null, () => new SqlServerStatementsContainer(), () => false, null);
+            var executor = new SqlScriptExecutor(() => Substitute.For<IConnectionManager>(), () => null, () => false, null);
 
             executor.VerifySchema();
         }
@@ -30,7 +30,7 @@ namespace DbUp.Tests.Support.SqlServer
             var dbConnection = Substitute.For<IDbConnection>();
             var command = Substitute.For<IDbCommand>();
             dbConnection.CreateCommand().Returns(command);
-            var executor = new SqlScriptExecutor(() => new TestConnectionManager(dbConnection, true), () => new ConsoleUpgradeLog(), () => new SqlServerStatementsContainer(), () => true, null);
+            var executor = new SqlScriptExecutor(() => new TestConnectionManager(dbConnection, true), () => new ConsoleUpgradeLog(), () => true, null);
 
             executor.Execute(new SqlScript("Test", "create $schema$.Table"));
 
@@ -44,7 +44,7 @@ namespace DbUp.Tests.Support.SqlServer
             var dbConnection = Substitute.For<IDbConnection>();
             var command = Substitute.For<IDbCommand>();
             dbConnection.CreateCommand().Returns(command);
-            var executor = new SqlScriptExecutor(() => new TestConnectionManager(dbConnection, true), () => new ConsoleUpgradeLog(), () => new SqlServerStatementsContainer(), () => true, null);
+            var executor = new SqlScriptExecutor(() => new TestConnectionManager(dbConnection, true), () => new ConsoleUpgradeLog(), () => true, null);
 
             executor.Execute(new SqlScript("Test", "create $foo$.Table"), new Dictionary<string, string>{{"foo", "bar"}});
 
@@ -58,7 +58,7 @@ namespace DbUp.Tests.Support.SqlServer
             var dbConnection = Substitute.For<IDbConnection>();
             var command = Substitute.For<IDbCommand>();
             dbConnection.CreateCommand().Returns(command);
-            var executor = new SqlScriptExecutor(() => new TestConnectionManager(dbConnection, true), () => new ConsoleUpgradeLog(), () => new SqlServerStatementsContainer(), () => false, null);
+            var executor = new SqlScriptExecutor(() => new TestConnectionManager(dbConnection, true), () => new ConsoleUpgradeLog(), () => false, null);
 
             executor.Execute(new SqlScript("Test", "create $foo$.Table"), new Dictionary<string, string> { { "foo", "bar" } });
 
@@ -72,7 +72,9 @@ namespace DbUp.Tests.Support.SqlServer
             var dbConnection = Substitute.For<IDbConnection>();
             var command = Substitute.For<IDbCommand>();
             dbConnection.CreateCommand().Returns(command);
-            var executor = new SqlScriptExecutor(() => new TestConnectionManager(dbConnection, true), () => new ConsoleUpgradeLog(), () => new SqlServerStatementsContainer(schema:"foo"), () => true, null);
+            var connectionManager = new TestConnectionManager(dbConnection, true);
+            connectionManager.SqlContainer.Scheme = "foo";
+            var executor = new SqlScriptExecutor(() => connectionManager, () => new ConsoleUpgradeLog(), () => true, null);
 
             executor.Execute(new SqlScript("Test", "create $schema$.Table"));
 
@@ -86,10 +88,10 @@ namespace DbUp.Tests.Support.SqlServer
             var dbConnection = Substitute.For<IDbConnection>();
             var command = Substitute.For<IDbCommand>();
             dbConnection.CreateCommand().Returns(command);
-            var executor = new SqlScriptExecutor(() => new TestConnectionManager(dbConnection, true)
-            {
-                IsScriptOutputLogged = true
-            }, () => new ConsoleUpgradeLog(), () => new SqlServerStatementsContainer(schema: "foo"), () => true, null);
+            var connectionManager = new TestConnectionManager(dbConnection, true);
+            connectionManager.SqlContainer.Scheme = "foo";
+            connectionManager.IsScriptOutputLogged = true;
+            var executor = new SqlScriptExecutor(() => connectionManager, () => new ConsoleUpgradeLog(), () => true, null);
 
             executor.Execute(new SqlScript("Test", "create $schema$.Table"));
 

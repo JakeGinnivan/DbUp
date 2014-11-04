@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using DbUp.Engine.Transactions;
 using DbUp.SQLite.Helpers;
+using DbUp.SQLite.Engine;
 
 namespace DbUp.SQLite
 {
@@ -17,6 +18,8 @@ namespace DbUp.SQLite
         /// </summary>
         public SQLiteConnectionManager(string connectionString) : base(l => new SQLiteConnection(connectionString))
         {
+            _sqlContainer = new SQLiteStatements();
+            _sqlContainer = new SQLiteStatements();
         }
 
         /// <summary>
