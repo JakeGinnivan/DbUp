@@ -25,7 +25,7 @@ namespace DbUp.Tests.Support.SQLiteMono
             var connectionManager = Substitute.For<IConnectionManager>();
             command.ExecuteScalar().Returns(x => { throw new SqliteException("table not found"); });
             var consoleUpgradeLog = new ConsoleUpgradeLog();
-            var journal = new TableJournal(() => connectionManager, () => consoleUpgradeLog, () => new QueryProvider("SchemaVersions"));
+            var journal = new TableJournal(() => connectionManager, () => consoleUpgradeLog);
 
             // When
             var scripts = journal.GetExecutedScripts();
@@ -48,7 +48,7 @@ namespace DbUp.Tests.Support.SQLiteMono
             command.CreateParameter().Returns(param1, param2);
             command.ExecuteScalar().Returns(x => { throw new SqliteException("table not found"); });
             var consoleUpgradeLog = new ConsoleUpgradeLog();
-            var journal = new TableJournal(() => connectionManager, () => consoleUpgradeLog, () => new QueryProvider("SchemaVersions"));
+            var journal = new TableJournal(() => connectionManager, () => consoleUpgradeLog);
 
             // When
             journal.StoreExecutedScript(new SqlScript("test", "select 1"));
