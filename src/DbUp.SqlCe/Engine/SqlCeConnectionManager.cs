@@ -18,7 +18,7 @@ namespace DbUp.SqlCe
         /// <param name="connectionString"></param>
         public SqlCeConnectionManager(string connectionString) : base(l => new SqlCeConnection(connectionString))
         {
-            this._sqlContainer = new SqlCeStatements();
+            this.SqlContainer = new SqlCeStatements();
         }
 
         public override IEnumerable<string> SplitScriptIntoCommands(string scriptContents)

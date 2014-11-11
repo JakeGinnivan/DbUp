@@ -14,7 +14,7 @@ namespace DbUp.Tests.TestInfrastructure
         {
             if (startUpgrade)
                 OperationStarting(new ConsoleUpgradeLog(), new List<SqlScript>());
-            this._sqlContainer = new SqlServerStatementsContainer();
+            this.SqlContainer = new SqlServerStatementsContainer();
         }
 
         public override IEnumerable<string> SplitScriptIntoCommands(string scriptContents)

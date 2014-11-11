@@ -18,8 +18,8 @@ namespace DbUp.SQLite
         /// </summary>
         public SQLiteConnectionManager(string connectionString) : base(l => new SQLiteConnection(connectionString))
         {
-            _sqlContainer = new SQLiteStatements();
-            _sqlContainer = new SQLiteStatements();
+            this.SqlContainer = new SQLiteStatements();
+            this.SqlContainer = new SQLiteStatements();
         }
 
         /// <summary>

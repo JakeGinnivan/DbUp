@@ -16,25 +16,16 @@ namespace DbUp.Engine.Transactions
         private readonly Dictionary<TransactionMode, Func<ITransactionStrategy>> transactionStrategyFactory;
         private IDbConnection upgradeConnection;
         private IConnectionFactory connectionFactoryOverride;
-        protected SqlStatementsContainer _sqlContainer;
 
         /// <summary>
         /// Connection string
         /// </summary>
-        public string ConnectionString
-        {
-            get;
-            set;
-        }
+        public string ConnectionString { get; set; }
 
         /// <summary>
         /// Container of sql statements for each implementation of database type
         /// </summary>
-        public SqlStatementsContainer SqlContainer 
-        {
-            get {return _sqlContainer;}
-            set { _sqlContainer = value; }
-        }
+        public SqlStatementsContainer SqlContainer { get; set; } 
 
         /// <summary>
         /// Manages Database Connections

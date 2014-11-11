@@ -25,7 +25,7 @@ namespace DbUp.Support.SqlServer
                 return conn;
             }))
         {
-            _sqlContainer = new SqlServerStatementsContainer();
+            this.SqlContainer = new SqlServerStatementsContainer();
         }
 
         public override IEnumerable<string> SplitScriptIntoCommands(string scriptContents)
