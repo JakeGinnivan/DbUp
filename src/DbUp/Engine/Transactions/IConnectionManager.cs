@@ -50,6 +50,13 @@ namespace DbUp.Engine.Transactions
         IEnumerable<string> SplitScriptIntoCommands(string scriptContents);
 
         /// <summary>
+        /// Set journalingTableName and scheme for specific sql container containing sql statements. 
+        /// </summary>
+        /// <param name="journalingTable">Name of journaling table</param>
+        /// <param name="scheme">Scheme of Journaling table</param>
+        void SetSqlContainerParameters(string journalingTable, string scheme);
+        
+        /// <summary>
         /// Tries to connect to the database.
         /// </summary> 
         bool TryConnect(IUpgradeLog upgradeLog, out string errorMessage);

@@ -18,6 +18,7 @@ namespace DbUp.Postgresql
         /// <param name="connectionString">The PostgreSQL connection string.</param>
         public PostgresqlConnectionManager(string connectionString) : base(new DelegateConnectionFactory(l => new NpgsqlConnection(connectionString)))
         {
+            this.SqlContainer = new PostgresqlStatements();
         }
 
         /// <summary>

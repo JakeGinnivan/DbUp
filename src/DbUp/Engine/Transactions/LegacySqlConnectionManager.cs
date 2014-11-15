@@ -91,5 +91,11 @@ namespace DbUp.Engine.Transactions
 
             }
         }
+
+        public void SetSqlContainerParameters(string journalingTable, string scheme)
+        {
+            this.SqlContainer.TableName = journalingTable;
+            this.SqlContainer.Scheme = scheme;
+        }
     }
 }
